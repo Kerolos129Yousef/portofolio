@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerolos Yousef — Software Engineer</title>
+<meta name="description" content="Kerolos Yousef — Software / DevOps Engineer. Portfolio of CI/CD, Cloud (AWS), Kubernetes, and full-stack projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17;
+    --bg-soft:#111827;
+    --card:#141b2d;
+    --card-2:#1a2336;
+    --border:#243049;
+    --text:#e8edf6;
+    --muted:#95a3bd;
+    --accent:#4f9cff;
+    --accent-2:#7c5cff;
+    --accent-3:#20e3b2;
+    --glow:rgba(79,156,255,.35);
+    --font-en:'Inter',system-ui,sans-serif;
+    --font-ar:'Cairo',system-ui,sans-serif;
+    --font:var(--font-en);
+  }
+  html[lang="ar"]{ --font:var(--font-ar); }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font);
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(900px 500px at 80% -5%, rgba(124,92,255,.14), transparent 60%),
+      radial-gradient(800px 500px at 0% 10%, rgba(79,156,255,.12), transparent 55%),
+      radial-gradient(700px 600px at 50% 110%, rgba(32,227,178,.08), transparent 60%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  section{padding:84px 0;position:relative}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,14,23,.72);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-weight:800;font-size:1.15rem;letter-spacing:.3px}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.93rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .lang-btn{
+    border:1px solid var(--border);background:var(--card);color:var(--text);
+    padding:7px 14px;border-radius:999px;cursor:pointer;font-family:inherit;
+    font-weight:700;font-size:.85rem;transition:.2s;display:flex;align-items:center;gap:6px;
+  }
+  .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.6rem;cursor:pointer}
+
+  /* HERO */
+  .hero{padding:70px 0 70px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;min-height:calc(100vh - 200px)}
+  .hero-text{text-align:start}
+  .hero .tag{
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    background:rgba(79,156,255,.1);border:1px solid rgba(79,156,255,.3);
+    color:var(--accent);font-size:.82rem;font-weight:600;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:800;line-height:1.14;margin-bottom:16px}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .role{font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--muted);font-weight:600;margin-bottom:18px}
+  .hero p.lead{max-width:560px;margin:0 0 32px;color:var(--muted);font-size:1.02rem}
+
+  /* HERO PHOTO */
+  .hero-photo{display:flex;justify-content:center;align-items:center;position:relative}
+  .photo-frame{
+    position:relative;width:min(100%,400px);aspect-ratio:1/1;border-radius:28px;
+    padding:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2) 50%,var(--accent-3));
+    box-shadow:0 30px 80px -24px var(--glow);
+    transition:transform .4s ease;
+  }
+  .photo-frame:hover{transform:translateY(-6px) rotate(-1deg)}
+  .photo-frame img{
+    width:100%;height:100%;object-fit:cover;border-radius:23px;display:block;
+    background:var(--card);
+  }
+  .photo-frame::before{
+    content:"";position:absolute;inset:-18px;border-radius:40px;z-index:-1;
+    background:radial-gradient(circle at 50% 50%, var(--glow), transparent 70%);
+    filter:blur(10px);opacity:.7;
+  }
+  /* floating accent badges on the photo */
+  .photo-frame .fbadge{
+    position:absolute;background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:10px 16px;font-size:.82rem;font-weight:700;
+    box-shadow:0 14px 34px -14px rgba(0,0,0,.6);display:flex;align-items:center;gap:8px;
+    backdrop-filter:blur(8px);
+  }
+  .photo-frame .fbadge .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-3);box-shadow:0 0 10px var(--accent-3)}
+  .fb-top{top:18px;inset-inline-start:-26px}
+  .fb-bottom{bottom:22px;inset-inline-end:-26px;color:var(--accent)}
+  .cta{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap}
+  .btn{
+    padding:13px 26px;border-radius:12px;font-weight:700;font-size:.95rem;cursor:pointer;
+    transition:.22s;border:1px solid transparent;font-family:inherit;display:inline-flex;gap:9px;align-items:center;
+  }
+  .btn-primary{background:linear-gradient(120deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 30px -8px var(--glow)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px var(--glow)}
+  .btn-ghost{background:var(--card);border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .socials{display:flex;gap:16px;justify-content:flex-start;margin-top:30px}
+  .socials a{
+    width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--card);
+    display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.2s;
+  }
+  .socials a:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
+  .socials svg{width:20px;height:20px}
+
+  /* SECTION HEADER */
+  .sec-head{text-align:center;margin-bottom:52px}
+  .sec-head .kick{color:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;margin-top:8px}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+  .about-text p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .about-text strong{color:var(--text)}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 18px;text-align:center}
+  .stat .num{font-size:1.9rem;font-weight:800;background:linear-gradient(120deg,var(--accent),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .lbl{color:var(--muted);font-size:.85rem;margin-top:4px}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.25s}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 18px 40px -18px var(--glow)}
+  .skill-card h3{font-size:1.05rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .skill-card .ico{width:38px;height:38px;border-radius:10px;background:rgba(79,156,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--card-2);border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:8px;font-size:.82rem;font-family:'JetBrains Mono',monospace}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+  .proj{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.25s;display:flex;flex-direction:column}
+  .proj:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 24px 50px -20px var(--glow)}
+  .proj-top{padding:24px 24px 0;position:relative}
+  .proj-banner{height:120px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;margin-bottom:18px;position:relative;overflow:hidden}
+  .pb1{background:linear-gradient(135deg,#1e3a5f,#4f9cff)}
+  .pb2{background:linear-gradient(135deg,#2d1b5e,#7c5cff)}
+  .pb3{background:linear-gradient(135deg,#0d4a3e,#20e3b2)}
+  .pb4{background:linear-gradient(135deg,#4a2d0d,#ff9f40)}
+  .proj-banner::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.2),transparent 50%)}
+  .badge-new{position:absolute;top:30px;right:30px;background:var(--accent-3);color:#04231c;font-weight:800;font-size:.7rem;padding:4px 10px;border-radius:999px;letter-spacing:.5px;z-index:2}
+  html[dir="rtl"] .badge-new{right:auto;left:30px}
+  .proj-body{padding:0 24px 24px;flex:1;display:flex;flex-direction:column}
+  .proj h3{font-size:1.2rem;margin-bottom:6px}
+  .proj .psub{color:var(--accent);font-size:.82rem;font-weight:600;margin-bottom:12px}
+  .proj .pdesc{color:var(--muted);font-size:.92rem;margin-bottom:16px;flex:1}
+  .proj .ptech{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+  .proj .ptech span{background:var(--card-2);border:1px solid var(--border);color:var(--muted);font-size:.74rem;padding:4px 9px;border-radius:7px;font-family:'JetBrains Mono',monospace}
+  .proj-links{display:flex;gap:14px}
+  .proj-links a{color:var(--accent);font-size:.88rem;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .proj-links a:hover{text-decoration:underline}
+  .proj-links svg{width:15px;height:15px}
+
+  /* TIMELINE */
+  .timeline{max-width:780px;margin:0 auto;position:relative;padding-inline-start:28px}
+  .timeline::before{content:"";position:absolute;inset-inline-start:7px;top:6px;bottom:6px;width:2px;background:var(--border)}
+  .tl-item{position:relative;padding-bottom:34px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;inset-inline-start:-28px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(79,156,255,.18)}
+  .tl-item .when{color:var(--accent-3);font-size:.8rem;font-weight:700;font-family:'JetBrains Mono',monospace}
+  .tl-item h3{font-size:1.1rem;margin:4px 0 2px}
+  .tl-item .where{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+  .tl-item p{color:var(--muted);font-size:.92rem}
+
+  /* EDU + CERTS */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .block h3.blkttl{font-size:1.25rem;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+  .edu-item,.cert-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:14px;transition:.2s}
+  .edu-item:hover,.cert-item:hover{border-color:var(--accent)}
+  .edu-item h4{font-size:1rem;margin-bottom:3px}
+  .edu-item .meta{color:var(--muted);font-size:.85rem;margin-bottom:6px}
+  .edu-item p{color:var(--muted);font-size:.88rem}
+  .cert-item{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+  .cert-item .cn{font-size:.92rem;font-weight:500}
+  .cert-item .cy{color:var(--accent-3);font-size:.78rem;font-weight:700;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact-box{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:48px 30px;max-width:620px;margin:0 auto}
+  .contact-box h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:12px}
+  .contact-box p{color:var(--muted);margin-bottom:28px}
+  .contact-methods{display:flex;flex-direction:column;gap:14px;max-width:400px;margin:0 auto}
+  .cm{display:flex;align-items:center;gap:14px;background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:14px 18px;transition:.2s;text-align:start}
+  .cm:hover{border-color:var(--accent);transform:translateX(4px)}
+  html[dir="rtl"] .cm:hover{transform:translateX(-4px)}
+  .cm .cmico{width:40px;height:40px;border-radius:10px;background:rgba(79,156,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cm .cmico svg{width:20px;height:20px;color:var(--accent)}
+  .cm .cmlbl{color:var(--muted);font-size:.75rem}
+  .cm .cmval{font-weight:600;font-size:.92rem;word-break:break-all}
+
+  footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;color:var(--muted);font-size:.86rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:820px){
+    .about-grid,.two-col{grid-template-columns:1fr}
+    .hero{padding:48px 0 60px}
+    .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center;min-height:auto}
+    .hero-text{text-align:center}
+    .hero p.lead{margin-inline:auto}
+    .cta,.socials{justify-content:center}
+    .hero-photo{order:-1}
+    .photo-frame{width:min(78%,300px)}
+    .fb-top{inset-inline-start:-10px}
+    .fb-bottom{inset-inline-end:-10px}
+    .nav-links{position:fixed;inset:66px 0 auto 0;flex-direction:column;background:var(--bg-soft);border-bottom:1px solid var(--border);padding:20px;gap:18px;display:none}
+    .nav-links.open{display:flex}
+    .menu-toggle{display:block}
+    .lang-btn{order:-1}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Kerolos<span>.</span>Y</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" data-en="About" data-ar="نبذة">About</a>
+      <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+      <a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+      <a href="#experience" data-en="Experience" data-ar="الخبرات">Experience</a>
+      <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 <span id="langLabel">عربي</span></button>
+    </div>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="tag" data-en="Available for freelance & full-time" data-ar="متاح للعمل الحر والدوام الكامل">Available for freelance &amp; full-time</span>
+      <h1 data-en="Hi, I'm Kerolos Yousef" data-ar="أهلاً، أنا كيرلس يوسف">Hi, I'm Kerolos Yousef</h1>
+      <div class="role">
+        <span class="grad" data-en="Software &amp; DevOps Engineer" data-ar="مهندس برمجيات و DevOps">Software &amp; DevOps Engineer</span>
+      </div>
+      <p class="lead" data-en="I build reliable software and automate how it ships — from full-stack apps and desktop systems to secure CI/CD pipelines, Kubernetes, and cloud infrastructure on AWS." data-ar="ببني برمجيات موثوقة وبأتمتة طريقة تسليمها — من تطبيقات الويب وأنظمة سطح المكتب، لخطوط CI/CD الآمنة و Kubernetes والبنية السحابية على AWS.">I build reliable software and automate how it ships — from full-stack apps and desktop systems to secure CI/CD pipelines, Kubernetes, and cloud infrastructure on AWS.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects" data-en="View My Work" data-ar="شوف شغلي">View My Work</a>
+        <a class="btn btn-ghost" href="Kerolos_Yousef_CV.pdf" download data-en="⬇ Download CV" data-ar="⬇ تحميل السيرة الذاتية">⬇ Download CV</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/Kerolos129Yousef" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.15-.02-2.09-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 2.82-.38c.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.62 1.54.23 2.68.11 2.96.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.04.76 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.65.78.54a11.26 11.26 0 0 0 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/kerolos-yousef129" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+        </a>
+        <a href="mailto:kerolos.yousef129@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="profile.jpg" alt="Kerolos Yousef" loading="eager">
+        <div class="fbadge fb-top"><span class="dot"></span><span data-en="Open to work" data-ar="متاح للعمل">Open to work</span></div>
+        <div class="fbadge fb-bottom">☁️ AWS Certified</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick" data-en="About Me" data-ar="نبذة عني">About Me</div>
+      <h2 data-en="Who I Am" data-ar="مين أنا">Who I Am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p data-en="I'm a Software &amp; DevOps Engineer based in Cairo, Egypt (open to remote and relocation). I love turning ideas into working, well-engineered products — and making sure they ship safely and run reliably in production." data-ar="أنا مهندس برمجيات و DevOps من القاهرة، مصر (متاح للعمل عن بُعد والانتقال). بحب أحوّل الأفكار لمنتجات شغالة ومهندَسة كويس — وأتأكد إنها بتتسلّم بأمان وبتشتغل باستقرار في الإنتاج.">I'm a Software &amp; DevOps Engineer based in Cairo, Egypt (open to remote and relocation). I love turning ideas into working, well-engineered products — and making sure they ship safely and run reliably in production.</p>
+        <p data-en="I hold a BSc in Computer Science &amp; AI (Honors, GPA 3.55) and am completing an MSc in Computer Engineering at Queen's University, Canada. My day-to-day spans full-stack development, desktop applications, secure CI/CD, Kubernetes GitOps, and infrastructure-as-code on AWS." data-ar="حاصل على بكالوريوس علوم حاسب وذكاء اصطناعي (مرتبة الشرف، معدل 3.55)، وبكمّل ماجستير هندسة حاسبات في جامعة Queen's بكندا. شغلي اليومي بيشمل تطوير full-stack، تطبيقات سطح المكتب، CI/CD آمن، Kubernetes GitOps، والبنية التحتية كـكود على AWS.">I hold a BSc in Computer Science &amp; AI (Honors, GPA 3.55) and am completing an MSc in Computer Engineering at Queen's University, Canada. My day-to-day spans full-stack development, desktop applications, secure CI/CD, Kubernetes GitOps, and infrastructure-as-code on AWS.</p>
+        <p data-en="For freelance clients, that means I can take a project from a blank repo to a live, monitored, automatically-deployed system — and hand you something maintainable." data-ar="بالنسبة للعملاء في العمل الحر، ده معناه إني أقدر آخد المشروع من ريبو فاضي لنظام شغّال ومراقَب وبيتنشر أوتوماتيك — وأسلّمك حاجة سهل صيانتها.">For freelance clients, that means I can take a project from a blank repo to a live, monitored, automatically-deployed system — and hand you something maintainable.</p>
+      </div>
+      <div class="stat-grid reveal">
+        <div class="stat"><div class="num">5+</div><div class="lbl" data-en="Shipped projects" data-ar="مشاريع مُنجزة">Shipped projects</div></div>
+        <div class="stat"><div class="num">3+</div><div class="lbl" data-en="Years coding" data-ar="سنوات برمجة">Years coding</div></div>
+        <div class="stat"><div class="num">AWS</div><div class="lbl" data-en="Certified Practitioner" data-ar="معتمد Practitioner">Certified Practitioner</div></div>
+        <div class="stat"><div class="num">MSc</div><div class="lbl" data-en="Computer Engineering" data-ar="هندسة حاسبات">Computer Engineering</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick" data-en="Tech Stack" data-ar="الأدوات والتقنيات">Tech Stack</div>
+      <h2 data-en="Skills &amp; Tools" data-ar="المهارات والأدوات">Skills &amp; Tools</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3><span class="ico">💻</span> <span data-en="Software Development" data-ar="تطوير البرمجيات">Software Development</span></h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">C# / .NET</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Node.js</span><span class="chip">Java</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ico">☁️</span> <span data-en="Cloud &amp; Infra" data-ar="السحابة والبنية">Cloud &amp; Infra</span></h3>
+        <div class="chips"><span class="chip">AWS</span><span class="chip">Terraform</span><span class="chip">Ansible</span><span class="chip">EC2 / VPC</span><span class="chip">EMR</span><span class="chip">Nginx</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ico">🚀</span> <span data-en="DevOps &amp; CI/CD" data-ar="DevOps و CI/CD">DevOps &amp; CI/CD</span></h3>
+        <div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">ArgoCD</span><span class="chip">GitHub Actions</span><span class="chip">Argo Rollouts</span><span class="chip">Kustomize</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ico">🔐</span> <span data-en="DevSecOps" data-ar="الأمن DevSecOps">DevSecOps</span></h3>
+        <div class="chips"><span class="chip">Syft / SBOM</span><span class="chip">Trivy</span><span class="chip">Docker Scout</span><span class="chip">Ansible Vault</span><span class="chip">CI security gates</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ico">📊</span> <span data-en="Observability" data-ar="المراقبة">Observability</span></h3>
+        <div class="chips"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Custom metrics</span><span class="chip">Dashboards</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ico">🗄️</span> <span data-en="Databases" data-ar="قواعد البيانات">Databases</span></h3>
+        <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">SQL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick" data-en="Portfolio" data-ar="أعمالي">Portfolio</div>
+      <h2 data-en="Featured Projects" data-ar="مشاريع مختارة">Featured Projects</h2>
+    </div>
+    <div class="proj-grid">
+
+      <!-- VapeShop POS -->
+      <article class="proj reveal">
+        <div class="proj-top">
+          <div class="proj-banner pb1"><span class="badge-new" data-en="NEW" data-ar="جديد">NEW</span>🧾</div>
+        </div>
+        <div class="proj-body">
+          <h3 data-en="VapeShop POS System" data-ar="نظام نقاط بيع VapeShop">VapeShop POS System</h3>
+          <div class="psub" data-en="Desktop Point-of-Sale Application" data-ar="تطبيق نقاط بيع لسطح المكتب">Desktop Point-of-Sale Application</div>
+          <p class="pdesc" data-en="A complete Windows POS system for a retail shop — sales, inventory, product management, and automatic database backups. Built as a self-contained desktop app with a local SQLite database, so it runs fully offline on the counter PC." data-ar="نظام نقاط بيع كامل لويندوز لمحل تجزئة — مبيعات، مخزون، إدارة منتجات، ونسخ احتياطي تلقائي لقاعدة البيانات. مبني كتطبيق سطح مكتب مستقل بقاعدة بيانات SQLite محلية، فبيشتغل أوفلاين بالكامل على جهاز الكاشير.">A complete Windows POS system for a retail shop — sales, inventory, product management, and automatic database backups. Built as a self-contained desktop app with a local SQLite database, so it runs fully offline on the counter PC.</p>
+          <div class="ptech"><span>C# / .NET</span><span>SQLite</span><span>Desktop</span><span>POS</span></div>
+          <div class="proj-links"><span style="color:var(--muted);font-size:.85rem" data-en="🔒 Private client project" data-ar="🔒 مشروع عميل خاص">🔒 Private client project</span></div>
+        </div>
+      </article>
+
+      <!-- Sentiment API -->
+      <article class="proj reveal">
+        <div class="proj-top">
+          <div class="proj-banner pb2">☸️</div>
+        </div>
+        <div class="proj-body">
+          <h3 data-en="Secure CI/CD + GitOps on Kubernetes" data-ar="CI/CD آمن + GitOps على Kubernetes">Secure CI/CD + GitOps on Kubernetes</h3>
+          <div class="psub" data-en="Sentiment API — Queen's University" data-ar="Sentiment API — جامعة Queen's">Sentiment API — Queen's University</div>
+          <p class="pdesc" data-en="A 7-stage Gitea Actions pipeline (lint, type-check, tests >70% coverage, multi-stage Docker build, SBOM via Syft) deploying a FastAPI service to Kubernetes. ArgoCD self-heals config drift within 30s; Argo Rollouts run a 5-step canary for zero-downtime releases." data-ar="خط أنابيب Gitea Actions من 7 مراحل (فحص، type-check، اختبارات بتغطية أكثر من 70%، بناء Docker متعدد المراحل، SBOM عبر Syft) لنشر خدمة FastAPI على Kubernetes. ArgoCD بيصلّح انحراف الإعدادات خلال 30 ثانية، و Argo Rollouts بيعمل canary من 5 خطوات لنشر بدون توقف.">A 7-stage Gitea Actions pipeline (lint, type-check, tests &gt;70% coverage, multi-stage Docker build, SBOM via Syft) deploying a FastAPI service to Kubernetes. ArgoCD self-heals config drift within 30s; Argo Rollouts run a 5-step canary for zero-downtime releases.</p>
+          <div class="ptech"><span>Kubernetes</span><span>ArgoCD</span><span>Argo Rollouts</span><span>Prometheus</span><span>Grafana</span><span>FastAPI</span></div>
+          <div class="proj-links">
+            <a href="https://github.com/Kerolos129Yousef/ml-sentiment-app" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.15-.02-2.09-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 2.82-.38c.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.62 1.54.23 2.68.11 2.96.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.04.76 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.65.78.54a11.26 11.26 0 0 0 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg>
+              <span data-en="Source" data-ar="الكود">Source</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- AI Study Companion -->
+      <article class="proj reveal">
+        <div class="proj-top">
+          <div class="proj-banner pb3">🤖</div>
+        </div>
+        <div class="proj-body">
+          <h3 data-en="AI Study Companion" data-ar="رفيق المذاكرة الذكي">AI Study Companion</h3>
+          <div class="psub" data-en="Full CI/CD + Cloud Deployment" data-ar="CI/CD كامل + نشر سحابي">Full CI/CD + Cloud Deployment</div>
+          <p class="pdesc" data-en="End-to-end CI/CD with GitHub Actions, Docker Hub, and AWS EC2 — production releases in under 5 minutes. AWS provisioned via Terraform and configured with Ansible, cutting environment setup from hours to under 10 minutes, with secrets managed via Ansible Vault." data-ar="CI/CD كامل بـ GitHub Actions و Docker Hub و AWS EC2 — إصدارات إنتاج في أقل من 5 دقائق. البنية على AWS مُجهّزة بـ Terraform ومُعدّة بـ Ansible، فقلّل وقت إعداد البيئة من ساعات لأقل من 10 دقائق، مع إدارة الأسرار عبر Ansible Vault.">End-to-end CI/CD with GitHub Actions, Docker Hub, and AWS EC2 — production releases in under 5 minutes. AWS provisioned via Terraform and configured with Ansible, cutting environment setup from hours to under 10 minutes, with secrets managed via Ansible Vault.</p>
+          <div class="ptech"><span>GitHub Actions</span><span>Terraform</span><span>Ansible</span><span>AWS EC2</span><span>Docker</span><span>Nginx</span></div>
+          <div class="proj-links">
+            <a href="https://github.com/Kerolos129Yousef/AI-Study-Companion" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.15-.02-2.09-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 2.82-.38c.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.62 1.54.23 2.68.11 2.96.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.04.76 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.65.78.54a11.26 11.26 0 0 0 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg>
+              <span data-en="Source" data-ar="الكود">Source</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Chat Assistant -->
+      <article class="proj reveal">
+        <div class="proj-top">
+          <div class="proj-banner pb4">🧠</div>
+        </div>
+        <div class="proj-body">
+          <h3 data-en="Cloud-Based Chat Assistant" data-ar="مساعد محادثة سحابي">Cloud-Based Chat Assistant</h3>
+          <div class="psub" data-en="LLM Fine-tuning &amp; Big Data" data-ar="تدريب نماذج LLM وبيانات ضخمة">LLM Fine-tuning &amp; Big Data</div>
+          <p class="pdesc" data-en="Fine-tuned Meta-Llama-3-8B with QLoRA (4-bit) on 150k+ QA records preprocessed with distributed Apache Spark on an AWS EMR cluster. Deployed as a CPU-optimised llama.cpp (GGUF) inference service on EC2, with a Streamlit web interface. Full network topology built with Terraform." data-ar="درّبت نموذج Meta-Llama-3-8B بـ QLoRA (4-bit) على أكثر من 150 ألف سجل أسئلة وأجوبة تمت معالجتها بـ Apache Spark الموزّع على عنقود AWS EMR. نُشِر كخدمة استدلال llama.cpp (GGUF) محسّنة للـCPU على EC2، مع واجهة ويب Streamlit. طوبولوجيا الشبكة كاملة مبنية بـ Terraform.">Fine-tuned Meta-Llama-3-8B with QLoRA (4-bit) on 150k+ QA records preprocessed with distributed Apache Spark on an AWS EMR cluster. Deployed as a CPU-optimised llama.cpp (GGUF) inference service on EC2, with a Streamlit web interface. Full network topology built with Terraform.</p>
+          <div class="ptech"><span>AWS EMR</span><span>Apache Spark</span><span>PyTorch</span><span>QLoRA</span><span>llama.cpp</span><span>Streamlit</span></div>
+          <div class="proj-links">
+            <a href="https://github.com/Kerolos129Yousef/Tech_chat_bot" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.15-.02-2.09-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 2.82-.38c.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.62 1.54.23 2.68.11 2.96.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.04.76 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.65.78.54a11.26 11.26 0 0 0 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg>
+              <span data-en="Source" data-ar="الكود">Source</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick" data-en="Career" data-ar="المسار المهني">Career</div>
+      <h2 data-en="Experience" data-ar="الخبرات">Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="when">Sep 2025 — Jul 2026</div>
+        <h3 data-en="Cloud / DevOps Engineer — Intern" data-ar="مهندس Cloud / DevOps — تدريب">Cloud / DevOps Engineer — Intern</h3>
+        <div class="where">Digilians — Cairo, Egypt</div>
+        <p data-en="Designed end-to-end CI/CD pipelines (GitHub &amp; Gitea Actions) with zero-touch SSH deploys to AWS EC2; provisioned AWS with Terraform &amp; Ansible; ran Kubernetes (k3d) workloads with ArgoCD GitOps and canary rollouts; instrumented apps with Prometheus &amp; Grafana." data-ar="صمّمت خطوط CI/CD متكاملة (GitHub و Gitea Actions) مع نشر SSH تلقائي على AWS EC2؛ جهّزت AWS بـ Terraform و Ansible؛ شغّلت أحمال Kubernetes (k3d) بـ ArgoCD GitOps ونشر canary؛ وراقبت التطبيقات بـ Prometheus و Grafana.">Designed end-to-end CI/CD pipelines (GitHub &amp; Gitea Actions) with zero-touch SSH deploys to AWS EC2; provisioned AWS with Terraform &amp; Ansible; ran Kubernetes (k3d) workloads with ArgoCD GitOps and canary rollouts; instrumented apps with Prometheus &amp; Grafana.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Jul 2023 — Sep 2023</div>
+        <h3 data-en="Android Developer — Intern" data-ar="مطوّر Android — تدريب">Android Developer — Intern</h3>
+        <div class="where">Information Technology Institute (ITI)</div>
+        <p data-en="Built Android apps in Java with a focus on mobile architecture and UI/UX, applying Agile practices." data-ar="بنيت تطبيقات Android بلغة Java مع التركيز على معمارية الموبايل و UI/UX، بتطبيق ممارسات Agile.">Built Android apps in Java with a focus on mobile architecture and UI/UX, applying Agile practices.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="when">Mar 2022 — Jul 2022</div>
+        <h3 data-en="Frontend Developer — Intern" data-ar="مطوّر Frontend — تدريب">Frontend Developer — Intern</h3>
+        <div class="where">Route Company</div>
+        <p data-en="Built real-world web apps with React, JavaScript &amp; Bootstrap 5 over REST APIs — including a full Product Management System with CRUD and a responsive dashboard." data-ar="بنيت تطبيقات ويب حقيقية بـ React و JavaScript و Bootstrap 5 فوق REST APIs — منها نظام إدارة منتجات كامل بـ CRUD ولوحة تحكم متجاوبة.">Built real-world web apps with React, JavaScript &amp; Bootstrap 5 over REST APIs — including a full Product Management System with CRUD and a responsive dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + CERTS -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick" data-en="Background" data-ar="الخلفية">Background</div>
+      <h2 data-en="Education &amp; Certifications" data-ar="التعليم والشهادات">Education &amp; Certifications</h2>
+    </div>
+    <div class="two-col">
+      <div class="block reveal">
+        <h3 class="blkttl">🎓 <span data-en="Education" data-ar="التعليم">Education</span></h3>
+        <div class="edu-item">
+          <h4 data-en="MSc, Computer Engineering" data-ar="ماجستير هندسة حاسبات">MSc, Computer Engineering</h4>
+          <div class="meta">Queen's University — Kingston, Canada · 2025–2026</div>
+          <p data-en="Focus: Distributed Systems, Cloud-Native Architectures, Software Engineering." data-ar="التركيز: الأنظمة الموزّعة، المعماريات السحابية، هندسة البرمجيات.">Focus: Distributed Systems, Cloud-Native Architectures, Software Engineering.</p>
+        </div>
+        <div class="edu-item">
+          <h4 data-en="BSc, Computer Science &amp; AI — Honors" data-ar="بكالوريوس علوم حاسب وذكاء اصطناعي — مرتبة الشرف">BSc, Computer Science &amp; AI — Honors</h4>
+          <div class="meta">Helwan University — Cairo · 2019–2023 · GPA 3.55</div>
+          <p data-en="Specialization: Medical Informatics. Capstone: Non-invasive anemia detection (deep learning, mobile)." data-ar="التخصص: المعلوماتية الطبية. مشروع التخرج: كشف فقر الدم بدون تدخل جراحي (تعلّم عميق، موبايل).">Specialization: Medical Informatics. Capstone: Non-invasive anemia detection (deep learning, mobile).</p>
+        </div>
+      </div>
+      <div class="block reveal">
+        <h3 class="blkttl">📜 <span data-en="Certifications" data-ar="الشهادات">Certifications</span></h3>
+        <div class="cert-item"><span class="cn">AWS Certified Cloud Practitioner</span><span class="cy">2026</span></div>
+        <div class="cert-item"><span class="cn" data-en="Fundamentals of Deep Learning — NVIDIA" data-ar="أساسيات التعلّم العميق — NVIDIA">Fundamentals of Deep Learning — NVIDIA</span><span class="cy">2026</span></div>
+        <div class="cert-item"><span class="cn" data-en="Supervised ML — DeepLearning.AI" data-ar="تعلّم آلي مُوجّه — DeepLearning.AI">Supervised ML — DeepLearning.AI</span><span class="cy">2026</span></div>
+        <div class="cert-item"><span class="cn" data-en="Docker (Hands-on Labs) — KodeKloud" data-ar="Docker (معمل تطبيقي) — KodeKloud">Docker (Hands-on Labs) — KodeKloud</span><span class="cy">2025</span></div>
+        <div class="cert-item"><span class="cn" data-en="Git Basics for DevOps — KodeKloud" data-ar="أساسيات Git لـ DevOps — KodeKloud">Git Basics for DevOps — KodeKloud</span><span class="cy">2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2 data-en="Let's build something" data-ar="يلا نبني حاجة سوا">Let's build something</h2>
+      <p data-en="Have a project, a system to automate, or an app to ship? I'm available for freelance and full-time work." data-ar="عندك مشروع، أو نظام عايز أتمتته، أو تطبيق عايز تطلّقه؟ أنا متاح للعمل الحر والدوام الكامل.">Have a project, a system to automate, or an app to ship? I'm available for freelance and full-time work.</p>
+      <div class="contact-methods">
+        <a class="cm" href="mailto:kerolos.yousef129@gmail.com">
+          <span class="cmico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg></span>
+          <span><span class="cmlbl" data-en="Email" data-ar="البريد">Email</span><br><span class="cmval">kerolos.yousef129@gmail.com</span></span>
+        </a>
+        <a class="cm" href="tel:+201553961624">
+          <span class="cmico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2Z"/></svg></span>
+          <span><span class="cmlbl" data-en="Phone" data-ar="الهاتف">Phone</span><br><span class="cmval">+20 155 396 1624</span></span>
+        </a>
+        <a class="cm" href="https://linkedin.com/in/kerolos-yousef129" target="_blank" rel="noopener">
+          <span class="cmico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></span>
+          <span><span class="cmlbl">LinkedIn</span><br><span class="cmval">/in/kerolos-yousef129</span></span>
+        </a>
+        <a class="cm" href="https://github.com/Kerolos129Yousef" target="_blank" rel="noopener">
+          <span class="cmico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.97 3.22 9.18 7.69 10.67.56.1.77-.24.77-.54 0-.27-.01-1.15-.02-2.09-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 2.82-.38c.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.62 1.54.23 2.68.11 2.96.72.79 1.16 1.79 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.04.76 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.65.78.54a11.26 11.26 0 0 0 7.68-10.67C23.25 5.48 18.27.5 12 .5Z"/></svg></span>
+          <span><span class="cmlbl">GitHub</span><br><span class="cmval">/Kerolos129Yousef</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-en="© 2026 Kerolos Yousef — Built with care." data-ar="© 2026 كيرلس يوسف — مصنوع بعناية.">© 2026 Kerolos Yousef — Built with care.</span>
+  </div>
+</footer>
+
+<script>
+  // ---- Language toggle ----
+  let lang = localStorage.getItem('lang') || 'en';
+  function applyLang(l){
+    const html = document.documentElement;
+    html.lang = l;
+    html.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      const val = el.getAttribute('data-'+l);
+      if(val !== null) el.innerHTML = val;
+    });
+    document.getElementById('langLabel').textContent = (l === 'ar') ? 'EN' : 'عربي';
+    try{ localStorage.setItem('lang', l); }catch(e){}
+    lang = l;
+  }
+  function toggleLang(){ applyLang(lang === 'en' ? 'ar' : 'en'); }
+  applyLang(lang);
+
+  // ---- Close mobile menu on link click ----
+  document.querySelectorAll('#navLinks a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // ---- Scroll reveal ----
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
