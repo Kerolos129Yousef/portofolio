@@ -13,6 +13,7 @@ A single-file, bilingual (English / العربية) portfolio built with plain H
 | Project | Stack |
 |---------|-------|
 | VapeShop POS System | C# / .NET · SQLite · Desktop |
+| Chemawy — Online Tutoring Platform | Next.js 16 · TypeScript · Tailwind v4 · Prisma |
 | Secure CI/CD + GitOps on Kubernetes | Kubernetes · ArgoCD · Argo Rollouts · FastAPI |
 | AI Study Companion | GitHub Actions · Terraform · Ansible · AWS EC2 |
 | Cloud-Based Chat Assistant | AWS EMR · Apache Spark · QLoRA · llama.cpp |
